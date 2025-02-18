@@ -1,0 +1,292 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.39 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| smart              |
+| sys                |
+| tree               |
+| world              |
++--------------------+
+8 rows in set (0.08 sec)
+
+mysql> use tree;
+Database changed
+mysql> select current_date;
++--------------+
+| current_date |
++--------------+
+| 2024-12-03   |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select current_time;
++--------------+
+| current_time |
++--------------+
+| 09:47:56     |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2024-12-03 09:48:07 |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2024-12-03 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 09:48:57  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select year(now);
+ERROR 1054 (42S22): Unknown column 'now' in 'field list'
+mysql> select year(now());
++-------------+
+| year(now()) |
++-------------+
+|        2024 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select month(now()) as month;
++-------+
+| month |
++-------+
+|    12 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select day(now()) as day;
++------+
+| day  |
++------+
+|    3 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select hour(now()) as hour;
++------+
+| hour |
++------+
+|    9 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select minute(now()) as minute;
++--------+
+| minute |
++--------+
+|     52 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select seconds(now()) as seconds;
+ERROR 1305 (42000): FUNCTION tree.seconds does not exist
+mysql> select second(now()) as seconds;
++---------+
+| seconds |
++---------+
+|      29 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(),interval 5 day);
++--------------------------------+
+| date_add(now(),interval 5 day) |
++--------------------------------+
+| 2024-12-08 09:55:25            |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(),interval 3 month);
++----------------------------------+
+| date_sub(now(),interval 3 month) |
++----------------------------------+
+| 2024-09-03 09:56:14              |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(),interval 2 year);
++---------------------------------+
+| date_add(now(),interval 2 year) |
++---------------------------------+
+| 2026-12-03 09:56:41             |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(now(),'%y-%m-%d');
++-------------------------------+
+| date_format(now(),'%y-%m-%d') |
++-------------------------------+
+| 24-12-03                      |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(now(),'%y-%m-%d-%y');
++----------------------------------+
+| date_format(now(),'%y-%m-%d-%y') |
++----------------------------------+
+| 24-12-03-24                      |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(now(),'%h:%i:%s');
++-------------------------------+
+| date_format(now(),'%h:%i:%s') |
++-------------------------------+
+| 10:00:06                      |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from books;
++------+---------+-------+
+| bid  | bname   | price |
++------+---------+-------+
+| 1001 | author  |  2000 |
+| 1002 | murder  |  3000 |
+| 1003 | novel   |  3000 |
+| 1004 | king    |  2000 |
+| 1005 | extract |  6000 |
++------+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select uppercase(bname) from books;
+ERROR 1305 (42000): FUNCTION tree.uppercase does not exist
+mysql> select upper(bname) from books;
++--------------+
+| upper(bname) |
++--------------+
+| AUTHOR       |
+| MURDER       |
+| NOVEL        |
+| KING         |
+| EXTRACT      |
++--------------+
+5 rows in set (0.00 sec)
+
+mysql> select substring('surya',1,4);
++------------------------+
+| substring('surya',1,4) |
++------------------------+
+| sury                   |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff('2024-12-31','2024-12-02');
++-------------------------------------+
+| datediff('2024-12-31','2024-12-02') |
++-------------------------------------+
+|                                  29 |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select unix_timestamp(now());
++-----------------------+
+| unix_timestamp(now()) |
++-----------------------+
+|            1733200685 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select unix_timestamp(now());
++-----------------------+
+| unix_timestamp(now()) |
++-----------------------+
+|            1733200770 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select from_unixtime(1609459200);
++---------------------------+
+| from_unixtime(1609459200) |
++---------------------------+
+| 2021-01-01 05:30:00       |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select week(2024-12-02);
++------------------+
+| week(2024-12-02) |
++------------------+
+|             NULL |
++------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select week(now());
++-------------+
+| week(now()) |
++-------------+
+|          48 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select convert t2(now(),'utc','america/newyork');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 't2(now(),'utc','america/newyork')' at line 1
+mysql> select convert T2(now(),'UTC','america/newyork');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'T2(now(),'UTC','america/newyork')' at line 1
+mysql> select convert TZ(now(),'UTC','america/newyork');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TZ(now(),'UTC','america/newyork')' at line 1
+mysql> select CONVERT_TZ(now(),'UTC','america/newyork');
++-------------------------------------------+
+| CONVERT_TZ(now(),'UTC','america/newyork') |
++-------------------------------------------+
+| NULL                                      |
++-------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timediff('2024-12-02 18:00:00','2021-12-02 12:00:00');
++-------------------------------------------------------+
+| timediff('2024-12-02 18:00:00','2021-12-02 12:00:00') |
++-------------------------------------------------------+
+| 838:59:59                                             |
++-------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select time_to_sec('12:3045');
++------------------------+
+| time_to_sec('12:3045') |
++------------------------+
+|                   NULL |
++------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select sec_to_time('45000');
++----------------------+
+| sec_to_time('45000') |
++----------------------+
+| 12:30:00.000000      |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql>
+
